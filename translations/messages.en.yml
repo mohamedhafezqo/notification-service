@@ -1,0 +1,6 @@
+notifications.events:
+      promoCode: "Enjoy discount off promo: code."
+common:
+      ourTeam: "Rick and Morty Team"
+      thankYou: "Thank you,,,"
+      dearName: "Dear %name%"

@@ -1,0 +1,6 @@
+notifications.events:
+      promoCode: "استمتع بخصم discount استخدم كود: code"
+common:
+      ourTeam: "فريق عمل ريك اند مورتي"
+      thankYou: "شكراً لك,,,"
+      dearName: "عزيزى %name%"
