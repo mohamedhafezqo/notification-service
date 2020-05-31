@@ -20,7 +20,7 @@ so it has only one responsibility and it is publishing the notifications
 	"users": [
         {"name" : "Hafez", "channel": "email", "locale" : "en", "to" : "mohamed.hafezqo@gmail.com"},
         {"name" : "Mohamed", "channel": "sms", "locale" : "ar", "to" : "00201144688896"},
-        {"name" : "Younis", "channel": "sms", "locale" : "en", "to" : "Younis@gmail.com"}
+        {"name" : "Younis", "channel": "email", "locale" : "en", "to" : "Younis@gmail.com"}
 	],
 	"notification": {
 		"template": "promoCode",
@@ -38,6 +38,9 @@ so it has only one responsibility and it is publishing the notifications
 - Run `docker-compose run php composer install` to install the dependencies.
 - Run `docker-compose up`
 - Run `docker-compose run php bin/console rabbitmq:consumer send_notifications`
+Response will be like
+![Queue Consumer](queue-consumer.png)
+
 
 ### Rabbitmq management
 - Open `http://127.0.0.1:15672/`
