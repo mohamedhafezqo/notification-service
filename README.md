@@ -18,8 +18,8 @@ so it has only one responsibility and it is publishing the notifications
 ```json
 {
 	"users": [
-		{"name" : "Hafez", "channel": "email", "locale" : "en", "to" : "00201144688896"},
-        {"name" : "Mohamed", "channel": "sms", "locale" : "ar", "to" : "mohamed.hafezqo@gmail.com"},
+        {"name" : "Hafez", "channel": "email", "locale" : "en", "to" : "mohamed.hafezqo@gmail.com"},
+        {"name" : "Mohamed", "channel": "sms", "locale" : "ar", "to" : "00201144688896"},
         {"name" : "Younis", "channel": "sms", "locale" : "en", "to" : "Younis@gmail.com"}
 	],
 	"notification": {
@@ -32,12 +32,17 @@ so it has only one responsibility and it is publishing the notifications
 
 ### Installation
 
-- Create `.env` file from `.env.dist`
+- Run `cp .env.dist .env`
 - Run `docker-compose build`
 - Run `docker-compose up -d`
 - Run `docker-compose run php composer install` to install the dependencies.
 - Run `docker-compose up`
 - Run `docker-compose run php bin/console rabbitmq:consumer send_notifications`
+
+### Rabbitmq management
+- Open `http://127.0.0.1:15672/`
+- user `root`
+- password `rabbitpass`
 
 
 ### Built With
