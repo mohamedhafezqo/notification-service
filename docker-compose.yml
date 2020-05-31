@@ -1,0 +1,31 @@
+version: '2'
+services:
+  php:
+    container_name: notification_service
+    build: ./docker/php
+    ports:
+      - "8001:80"
+    volumes:
+      - .:/www
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    container_name: container_rabbit
+    hostname: rabbit
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: rabbitpass
+    volumes:
+      - ./docker/rabbitmq-data:/var/lib/rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - { subnet: "192.200.99.0/24", gateway: "192.200.99.1" }
