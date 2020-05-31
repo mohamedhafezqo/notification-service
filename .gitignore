@@ -4,7 +4,8 @@
 /public/bundles/
 /var/
 /vendor/
-/docker/rabbitmq-data/*
+/docker/rabbitmq-data/.erlang.cookie
+/docker/rabbitmq-data/mnesia
 ###< symfony/framework-bundle ###
 
 ###> symfony/web-server-bundle ###
