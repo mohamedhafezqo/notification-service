@@ -1,0 +1,12 @@
+{% extends "::base.email.html.twig" %}
+{% block body %}
+    <p class="content">
+        {{ 'notifications.events.credit_charging_message_fragment_one' | transchoice(subject.amount, {'%amount%': subject.amount}) }}
+        {{ 'notifications.events.credit_charging_message_fragment_two' | transchoice(subject.balance, {'%balance%': subject.balance}) }}
+    </p>
+    <p style="color:gray;">
+        {{ "common.thank_you" |trans }}
+        <br />
+        {{ "common.swvl_team" |trans }}
+    </p>
+{% endblock %}

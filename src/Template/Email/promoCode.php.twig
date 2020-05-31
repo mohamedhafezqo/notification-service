@@ -1,0 +1,12 @@
+{% extends "@MainBundle/Email/base.email.html.twig" %}
+{% block body %}
+    <b>{{ "common.dear_name" |trans({ '%name%': name }, "messages") }}</b>
+    <p>
+        {{ 'notifications.events.promoCode' | trans({'%discount%': discount, '%code%': code}) }}
+    </p>
+    <p style="color: gray;">
+        {{ "common.thankYou" |trans }}
+        <br />
+        {{ "common.ourTeam" |trans }}
+    </p>
+{% endblock %}
