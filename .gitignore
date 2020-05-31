@@ -1,0 +1,19 @@
+###> symfony/framework-bundle ###
+/.env
+/.idea
+/public/bundles/
+/var/
+/vendor/
+/docker/rabbitmq-data/*
+###< symfony/framework-bundle ###
+
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###
+###> behat/symfony2-extension ###
+/behat.yml
+###< behat/symfony2-extension ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+###< phpunit/phpunit ###
