@@ -1,0 +1,120 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: 'en'
+    email:
+      drip:
+        key: ~
+        secret: ~
+    sms:
+      nexmo:
+        key: ~
+        secret: ~
+        from: ~
+
+    rabbitmq_host: "rabbitmq"
+    rabbitmq_port: "5672"
+    rabbitmq_user: "root"
+    rabbitmq_password: "rabbitpass"
+    rabbitmq_vhost: "/"
+
+old_sound_rabbit_mq:
+  connections:
+    default:
+      host: '%rabbitmq_host%'
+      user: '%rabbitmq_user%'
+      port: '%rabbitmq_port%'
+      password: '%rabbitmq_password%'
+      vhost: '%rabbitmq_vhost%'
+  producers:
+    send_notifications:
+      connection: default
+      exchange_options:
+        name: notifications
+        type: direct
+  consumers:
+    send_notifications:
+      connection:       default
+      exchange_options: {name: 'notifications', type: direct}
+      queue_options:    {name: 'notifications'}
+      callback:         notification_worker
+
+twig:
+  debug:            "%kernel.debug%"
+  strict_variables: "%kernel.debug%"
+  paths:
+    "%kernel.root_dir%/../src/Template": MainBundle
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused services; this also means
+                            # fetching services directly from the container via $container->get() won't work.
+                            # The best practice is to be explicit about your dependencies anyway.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    # add more service definitions when explicit configuration is needed
+    notification_worker:
+      class: 'App\Queue\NotificationWorker'
+
+    App\Service\QueueProducer:
+      class: 'App\Service\QueueProducer'
+      arguments:
+        - "@old_sound_rabbit_mq.send_notifications_producer"
+
+    App\Service\NotificationFormatter:
+      class: 'App\Service\NotificationFormatter'
+      arguments:
+        - "@twig"
+        - "@translator"
+
+    App\Service\ChannelFactory:
+      class: 'App\Service\ChannelFactory'
+      arguments:
+        - '@service_container'
+
+    App\Provider\Email\DripProvider:
+      class: 'App\Provider\Email\DripProvider'
+      arguments:
+        - "%email%"
+
+    App\Provider\SMS\NexmoProvider:
+      class: 'App\Provider\SMS\NexmoProvider'
+      arguments:
+        - "%sms%"
+
+    App\Channel\EmailChannel:
+      class: 'App\Channel\EmailChannel'
+      public: true
+      arguments:
+        - '@App\Provider\Email\DripProvider'
+
+    App\Channel\SmsChannel:
+      class: 'App\Channel\SmsChannel'
+      public: true
+      arguments:
+        - '@App\Provider\SMS\NexmoProvider'
+
+    App\Service\NotificationSender:
+      class: 'App\Service\NotificationSender'
+      arguments:
+        - '@App\Service\ChannelFactory'
+        - '@App\Service\NotificationFormatter'
+
+    # please note that last definitions always *replace* previous ones

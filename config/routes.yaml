@@ -1,0 +1,3 @@
+sum:
+    path: /sum/{a}/{b}
+    controller: App\Controller\SumController::sumAction
