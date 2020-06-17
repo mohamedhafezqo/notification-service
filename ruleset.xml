@@ -1,8 +1,61 @@
 <?xml version="1.0"?>
 <ruleset>
-    <rule ref="./vendor/escapestudios/symfony2-coding-standard/Symfony/ruleset.xml" />
+    <!-- display progress -->
+    <arg value="p"/>
+    <arg name="colors"/>
+
+    <!--
+       You can hard-code custom php.ini settings into your custom standard.
+       The following tag sets the memory limit to 64M.
+    -->
+    <ini name="memory_limit" value="64M"/>
+
+    <!-- Inheritance Rules. -->
+    <rule ref="PSR2"/>
+<!--    <rule ref="PEAR"/>-->
+
+    <!-- Paths to check -->
+    <file>src</file>
+
+    <!-- Excluded paths -->
+    <exclude-pattern>Kernel</exclude-pattern>
+    <exclude-pattern>*/Tests</exclude-pattern>
+    <exclude-pattern>*/Translations</exclude-pattern>
+
     <rule ref="Generic.Arrays.DisallowLongArraySyntax" />
-    <rule ref="Symfony.Commenting.License">
-        <severity>0</severity>
+
+    <rule ref="Generic.Commenting.Todo.CommentFound">
+        <message>Please review this TODO comment: %s</message>
+        <severity>3</severity>
     </rule>
+
+    <rule ref="Generic.Formatting.MultipleStatementAlignment">
+        <type>error</type>
+    </rule>
+    <rule ref="Squiz.Strings">
+        <type>warning</type>
+    </rule>
+    <rule ref="PSR12">
+        <type>warning</type>
+    </rule>
+
+<!--    <rule ref="Internal.NoCodeFound">-->
+<!--        <severity>0</severity>-->
+<!--    </rule>-->
+
+    <rule ref="Generic.Commenting.Todo.CommentFound">
+        <type>error</type>
+    </rule>
+
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.ContainsVar">
+        <type>warning</type>
+    </rule>
+
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property phpcs-only="true" name="lineLimit" value="80"/>
+            <property phpcbf-only="true" name="lineLimit" value="120"/>
+        </properties>
+    </rule>
+
 </ruleset>

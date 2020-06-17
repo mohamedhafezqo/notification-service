@@ -11,10 +11,14 @@ use App\Contract\ProviderInterface;
  */
 class DripProvider implements ProviderInterface
 {
-    /** @var array $config **/
+    /**
+     * @var array $config
+     **/
     private $config;
 
-    /** @var array $client **/
+    /**
+     * @var array $client
+     */
     private $client;
 
     /**
@@ -31,7 +35,7 @@ class DripProvider implements ProviderInterface
      * @param array  $notifiable
      * @param string $notification
      *
-     * @return bool|mixed
+     * @return bool
      */
     public function send(array $notifiable, string $notification)
     {

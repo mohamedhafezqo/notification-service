@@ -7,6 +7,9 @@ use App\Contract\NotificationFormatterInterface;
 use App\Contract\NotificationSenderInterface;
 use App\Exceptions\DriverNotFoundException;
 
+/**
+ * Class NotificationSender
+ */
 class NotificationSender implements NotificationSenderInterface
 {
     /** @var ChannelFactoryInterface $channelFactory */
@@ -21,9 +24,11 @@ class NotificationSender implements NotificationSenderInterface
      * @param ChannelFactoryInterface        $channelFactory
      * @param NotificationFormatterInterface $notificationFormatter
      */
-    public function __construct(ChannelFactoryInterface $channelFactory, NotificationFormatterInterface $notificationFormatter)
-    {
-        $this->channelFactory = $channelFactory;
+    public function __construct(
+        ChannelFactoryInterface $channelFactory,
+        NotificationFormatterInterface $notificationFormatter
+    ) {
+        $this->channelFactory        = $channelFactory;
         $this->notificationFormatter = $notificationFormatter;
     }
 
@@ -38,6 +43,9 @@ class NotificationSender implements NotificationSenderInterface
     public function send(array $user, array $notification)
     {
         $driver = $this->channelFactory->create($user['channel']);
-        $driver->send($user, $this->notificationFormatter->render($user, $notification));
+        $driver->send(
+            $user,
+            $this->notificationFormatter->render($user, $notification)
+        );
     }
 }

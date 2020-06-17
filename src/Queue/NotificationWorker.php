@@ -6,15 +6,25 @@ use App\Contract\NotificationSenderInterface;
 use OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface;
 use PhpAmqpLib\Message\AMQPMessage;
 
+/**
+ * Class NotificationWorker
+ *
+ * @category Template_Class
+ * @package  App\Queue
+ * @author   Author <author@domain.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://localhost/
+ */
 class NotificationWorker implements ConsumerInterface
 {
     /** @var NotificationSenderInterface $notificationSender */
     private $notificationSender;
 
+
     /**
      * NotificationWorker constructor.
      *
-     * @param NotificationSenderInterface $notificationSender]
+     * @param NotificationSenderInterface $notificationSender
      */
     public function __construct(NotificationSenderInterface $notificationSender)
     {
