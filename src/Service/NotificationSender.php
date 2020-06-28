@@ -28,7 +28,7 @@ class NotificationSender implements NotificationSenderInterface
         ChannelFactoryInterface $channelFactory,
         NotificationFormatterInterface $notificationFormatter
     ) {
-        $this->channelFactory        = $channelFactory;
+        $this->channelFactory = $channelFactory;
         $this->notificationFormatter = $notificationFormatter;
     }
 

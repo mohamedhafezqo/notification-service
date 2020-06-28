@@ -11,15 +11,13 @@ use PhpAmqpLib\Message\AMQPMessage;
  *
  * @category Template_Class
  * @package  App\Queue
- * @author   Author <author@domain.com>
+ * @author   Hafez <mohamed.hafezqo@gmail.com>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://localhost/
  */
 class NotificationWorker implements ConsumerInterface
 {
     /** @var NotificationSenderInterface $notificationSender */
     private $notificationSender;
-
 
     /**
      * NotificationWorker constructor.
@@ -47,7 +45,7 @@ class NotificationWorker implements ConsumerInterface
                 echo "- {$user['name']} has been notified." . PHP_EOL;
             }
         } catch (\Throwable $exception) {
-            echo "Exception: " . $exception->getMessage() . PHP_EOL;
+            echo 'Exception: ' . $exception->getMessage() . PHP_EOL;
         }
 
         return true;

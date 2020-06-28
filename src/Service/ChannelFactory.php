@@ -9,7 +9,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ChannelFactory implements ChannelFactoryInterface
 {
-    /** @var ContainerInterface $container */
+    /**
+     * @var ContainerInterface $container
+     */
     private $container;
 
     /**
@@ -27,13 +29,11 @@ class ChannelFactory implements ChannelFactoryInterface
      */
     public function create(string $channelName): ChannelInterface
     {
-        $className = ucfirst($channelName).'Channel';
-        $channel = 'App\\Channel\\'. $className;
+        $className = ucfirst($channelName) . 'Channel';
+        $channel   = 'App\\Channel\\' . $className;
 
         if (!class_exists($channel)) {
-            throw new DriverNotFoundException(
-                "We don't support ". $channelName ."Driver"
-            );
+            throw new DriverNotFoundException("We don't support " . $channelName . 'Driver');
         }
 
         return $this->container->get($channel);

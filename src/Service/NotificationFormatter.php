@@ -28,7 +28,7 @@ class NotificationFormatter implements NotificationFormatterInterface
      */
     public function __construct($twig, Translator $translator)
     {
-        $this->twig       = $twig;
+        $this->twig = $twig;
         $this->translator = $translator;
     }
 
@@ -65,7 +65,7 @@ class NotificationFormatter implements NotificationFormatterInterface
         $data = array_merge($notification, $user);
 
         return $this->twig->render(
-            '@MainBundle/Email/'. $data['template']. '.php.twig',
+            '@MainBundle/Email/' . $data['template'] . '.php.twig',
             $data
         );
     }
@@ -82,10 +82,9 @@ class NotificationFormatter implements NotificationFormatterInterface
 
         return $this->translator
             ->trans(
-                "notifications.events.".$data['template'],
+                'notifications.events.' . $data['template'],
                 $data
-            )
-        ;
+            );
     }
 
     /**
