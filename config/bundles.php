@@ -9,5 +9,6 @@ return [
     Nelmio\ApiDocBundle\NelmioApiDocBundle::class => ['all' => true],
     JMS\SerializerBundle\JMSSerializerBundle::class => ['all' => true],
     Symfony\Bundle\TwigBundle\TwigBundle::class => ['all' => true],
-    OldSound\RabbitMqBundle\OldSoundRabbitMqBundle::class => ['all' => true]
+    OldSound\RabbitMqBundle\OldSoundRabbitMqBundle::class => ['all' => true],
+    Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'test' => true],
 ];
