@@ -4,15 +4,9 @@
     <arg value="p"/>
     <arg name="colors"/>
 
-    <!--
-       You can hard-code custom php.ini settings into your custom standard.
-       The following tag sets the memory limit to 64M.
-    -->
-    <ini name="memory_limit" value="64M"/>
-
     <!-- Inheritance Rules. -->
     <rule ref="PSR2"/>
-<!--    <rule ref="PEAR"/>-->
+    <!-- <rule ref="PEAR"/>-->
 
     <!-- Paths to check -->
     <file>src</file>
@@ -38,10 +32,6 @@
     <rule ref="PSR12">
         <type>warning</type>
     </rule>
-
-<!--    <rule ref="Internal.NoCodeFound">-->
-<!--        <severity>0</severity>-->
-<!--    </rule>-->
 
     <rule ref="Generic.Commenting.Todo.CommentFound">
         <type>error</type>

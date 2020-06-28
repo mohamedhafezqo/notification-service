@@ -19,7 +19,10 @@ class NotificationController
      * @param Request $request
      * @param QueueProducerInterface $producer
      *
-     * @Rest\Post("/send", options={"i18n" = false, "expose"=true}, name="send_notification")
+     * @Rest\Post("/send",
+     *      options={"i18n" = false, "expose"=true},
+     *      name="send_notification"
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Produce a notification in queue",
